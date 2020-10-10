@@ -2,6 +2,9 @@ package newcode;
 
 import java.util.Scanner;
 
+/**
+ * 华为机试 转换成二进制之后的1 的个数
+ */
 public class TwoJinzhi {
     public static void main(String[] args) {
         Scanner in = new Scanner(System.in);

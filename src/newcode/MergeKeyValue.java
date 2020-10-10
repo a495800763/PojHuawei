@@ -2,6 +2,9 @@ package newcode;
 
 import java.util.*;
 
+/**
+ * 华为机试
+ */
 public class MergeKeyValue {
     public static void main(String[] args) {
         Scanner in = new Scanner(System.in);
