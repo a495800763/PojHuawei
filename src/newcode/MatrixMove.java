@@ -16,6 +16,8 @@ public class MatrixMove {
             Integer[] result = getMovedPointer(points);
             System.out.print(result[0] + "," + result[1]);
             System.out.print('\n');
+
+
         }
     }
 
