@@ -14,8 +14,8 @@ public class InvitationCode {
          * 这样就不需要另外建立字符与数字的对应关系
          */
         Scanner in = new Scanner(System.in);
+        System.out.println("请输入验证码：");
         while (in.hasNextLine()) {
-            System.out.println("请输入验证码：");
             String code = in.nextLine();
             boolean reuslt = false;
             try {
@@ -31,6 +31,10 @@ public class InvitationCode {
     private static boolean isCorrect(String code) throws Exception {
         //得到每一位字符
         char[] chars = code.toCharArray();
+        if(chars.length!=16)
+        {
+            throw new Exception("输入的验证码不符合规范");
+        }
 
         //奇数位的和
         int oddSum = 0;

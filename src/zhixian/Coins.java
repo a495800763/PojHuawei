@@ -111,7 +111,7 @@ public class Coins {
                     }
                 } else {
                     for (Integer k : denominations) {
-                        System.out.println(LocalDateTime.now().toString() +i + ":" + j + ":" + k);
+                        //System.out.println(LocalDateTime.now().toString() +i + ":" + j + ":" + k);
                         if (j - k <= 0) {
                             continue;
                         } else {
