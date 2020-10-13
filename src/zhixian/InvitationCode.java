@@ -1,10 +1,9 @@
 package zhixian;
 
-import java.util.ResourceBundle;
 import java.util.Scanner;
 
 /**
- * 智线笔试 邀请码检测
+ * 邀请码检测
  */
 public class InvitationCode {
     public static void main(String[] args) {

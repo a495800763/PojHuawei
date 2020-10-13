@@ -1,7 +1,7 @@
 package zhixian;
 
 /**
- * 智线笔试 部门优化
+ * 部门优化
  */
 public class Optimization {
 

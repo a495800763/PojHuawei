@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * 智线笔试 有趣的两位数
+ * 有趣的两位数
  */
 public class SmartNumber {
     public static void main(String[] args) {

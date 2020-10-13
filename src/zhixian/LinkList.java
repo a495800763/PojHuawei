@@ -42,7 +42,7 @@ public class LinkList {
     }
 
     /**
-     * 智线笔试 单链表处理
+     * 单链表处理
      *
      * @param head
      * @return
