@@ -76,7 +76,7 @@ public class OperationCount {
 
                 Queue<Integer> numqueue = new LinkedList<>();
                 Queue<Character> opQueue = new LinkedList<>();
-                for (int i = 1; i <= numStack.size(); i++) {
+                while (numStack.size() > 1) {
                     int a = numStack.pop();
                     int b = numStack.pop();
                     Character op = opreationStack.pop();
@@ -97,34 +97,48 @@ public class OperationCount {
                     }
                 }
 
+                Stack<Integer> currentStack = new Stack<>();
+                Stack<Integer> midStack = new Stack<>();
                 while (numqueue.size() > 0) {
+                    midStack.push(numqueue.poll());
+                }
+                while (midStack.size() > 0) {
+                    currentStack.push(midStack.pop());
+                }
+                while (currentStack.size() > 0) {
                     boolean sign = false;
+
                     if (opreationStack.size() > 0 && opreationStack.peek().equals('-')) {
                         sign = true;
                     }
-                    if (numqueue.size() > 1) {
-                        Integer a = numqueue.poll();
+                    if (currentStack.size() > 1) {
+                        Integer a = currentStack.pop();
                         if (sign) {
                             a = 0 - a;
                         }
-                        Integer b = numqueue.poll();
+                        Integer b = currentStack.pop();
                         Character c = opQueue.poll();
                         if (c.equals('+')) {
-                            result += (a + b);
+                           // result += (a + b);
+                            currentStack.push(a + b);
+
                         } else {
-                            result += (a - b);
+                            //result += (b - a);
+                            currentStack.push(b - a);
                         }
                     } else {
                         Integer a = numStack.pop();
-                        Integer b = numqueue.poll();
+                        Integer b = currentStack.pop();
                         if (sign) {
                             a = 0 - a;
                         }
                         Character c = opQueue.poll();
                         if (c.equals('+')) {
                             result += (a + b);
+                            numStack.push(a + b);
                         } else {
                             result += (a - b);
+                            numStack.push(a - b);
                         }
                     }
                 }
