@@ -34,8 +34,11 @@ public class LinkList {
                 }
             }
             printLinkedList(head);
-            Node resetLinkedList = resetLinkedList(head);
-            printLinkedList(resetLinkedList);
+            //Node resetLinkedList = resetLinkedList(head);
+            //printLinkedList(resetLinkedList);
+
+            Node removed = removeNthFromEnd(head, 1);
+            printLinkedList(removed);
             head = null;
 
         }
@@ -97,6 +100,37 @@ public class LinkList {
         return resultHead;
     }
 
+
+    /**
+     * leetcode:删除链表的倒数第n个节点
+     *
+     * @param head
+     * @param n
+     * @return
+     */
+    public static Node removeNthFromEnd(Node head, int n) {
+        //每次查看的节点
+        Node operationHead = head;
+        while (operationHead != null) {
+            Node current = operationHead;
+            int i;
+            for (i = 0; i < n + 1; i++) {
+                if (current != null) {
+                    current = current.next;
+                } else {
+                    break;
+                }
+            }
+
+            if (current != null) {
+                operationHead = operationHead.next;
+            } else {
+                operationHead.next = operationHead.next.next;
+                break;
+            }
+        }
+        return head;
+    }
 
     private static void printLinkedList(Node head) {
         while (head != null) {

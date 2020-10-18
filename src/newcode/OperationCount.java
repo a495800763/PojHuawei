@@ -119,7 +119,7 @@ public class OperationCount {
                         Integer b = currentStack.pop();
                         Character c = opQueue.poll();
                         if (c.equals('+')) {
-                           // result += (a + b);
+                            // result += (a + b);
                             currentStack.push(a + b);
 
                         } else {

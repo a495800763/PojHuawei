@@ -11,8 +11,8 @@ public class Main {
 
             char s = bReader.readLine().toCharArray()[0];
             int total = 0;
-            for(int i = 0;i<line.length();i++){
-                if(line.charAt(i) == s || line.charAt(i) == (char)s-32){
+            for (int i = 0; i < line.length(); i++) {
+                if (line.charAt(i) == s || line.charAt(i) == (char) s - 32) {
                     total++;
                 }
             }

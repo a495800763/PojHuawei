@@ -9,7 +9,7 @@ import java.util.Scanner;
  * 华为机试
  * 汽水瓶
  */
-public class Drink{
+public class Drink {
     public static void main(String[] args) throws IOException {
         Scanner sc = new Scanner(System.in);
         List<Integer> result = new ArrayList<>();

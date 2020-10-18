@@ -30,19 +30,16 @@ public class DataFenlei {
             String a = get16Result(current);
             String substr = a.substring(2);
             int sum = 0;
-            for(int i =0;i<4;i++)
-            {
-                sum+= Integer.valueOf(substr.substring(i*2,i*2+2)) ;
+            for (int i = 0; i < 4; i++) {
+                sum += Integer.valueOf(substr.substring(i * 2, i * 2 + 2));
             }
             int i = sum % b;
-            map.put(i,map.get(i)+1);
+            map.put(i, map.get(i) + 1);
         }
         int max = 0;
-        for(int i =0;i<c&&i<b;i++)
-        {
-            if(map.get(i)>max)
-            {
-                max=map.get(i);
+        for (int i = 0; i < c && i < b; i++) {
+            if (map.get(i) > max) {
+                max = map.get(i);
             }
         }
         return max;

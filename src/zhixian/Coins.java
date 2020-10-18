@@ -28,7 +28,7 @@ public class Coins {
             int m = in.nextInt();//总面值数
             int result = getDpResult(n, m);
             int dpResult = getDPResultByMap(n, m);
-            System.out.println("结果："  + dpResult);
+            System.out.println("结果：" + dpResult);
         }
     }
 
@@ -85,12 +85,12 @@ public class Coins {
 
         //数组长度+1,使下标与n m实际值一致
         List<Map<Integer, Integer>>[][] dp = new ArrayList[n + 1][m + 1];
-        Integer[] countArray = new Integer[n+1];
+        Integer[] countArray = new Integer[n + 1];
         for (int i = 1; i <= n; i++) {
             //如果m>i*10;则构造超过i*10 的结果是无意义的
             // 例如 i=1,m=50,使用一个币最多只能得到面值10
             int count = i * 10 <= m ? i * 10 : m;
-            countArray[i]=count;
+            countArray[i] = count;
             for (int j = 1; j <= count; j++) {
                 if (dp[i][j] == null) {
                     dp[i][j] = new ArrayList<>();
@@ -117,7 +117,7 @@ public class Coins {
                         } else {
                             boolean sign = true;
                             // dp[i-1]只初始化了前countArray[i-1]个数据，其他的情况直接continue
-                            if (j - k > countArray[i-1]) {
+                            if (j - k > countArray[i - 1]) {
                                 continue;
                             }
                             for (Map<Integer, Integer> map : dp[i - 1][j - k]) {
@@ -154,21 +154,19 @@ public class Coins {
             //i循环完以后 dp[i]里面存在很多重复的map 必须清理重复数据
             List<String> list = new ArrayList<>();
             for (List<Map<Integer, Integer>> maps : dp[i]) {
-                if (maps==null)
-                {
+                if (maps == null) {
                     continue;
                 }
                 Iterator<Map<Integer, Integer>> iterator = maps.iterator();
-                while (iterator.hasNext())
-                {
+                while (iterator.hasNext()) {
                     String str = "";
                     Map<Integer, Integer> next = iterator.next();
                     for (Map.Entry<Integer, Integer> entry : next.entrySet()) {
                         str += entry.getKey() + ":" + entry.getValue() + ";";
                     }
-                    if(!list.contains(str)){
+                    if (!list.contains(str)) {
                         list.add(str);
-                    }else{
+                    } else {
                         iterator.remove();
                     }
                 }

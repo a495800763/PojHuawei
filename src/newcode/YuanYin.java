@@ -41,7 +41,7 @@ public class YuanYin {
                         if (list.contains(chars[j])) {
                             if (count == degree) {
                                 //瑕疵度达到了 可以计算长度
-                                resList.add(str.substring(i, j+1));
+                                resList.add(str.substring(i, j + 1));
                             } else {
                                 // 瑕疵度没达到 这组不算
                                 continue;
@@ -61,6 +61,6 @@ public class YuanYin {
             }
         }
 
-        return max ;
+        return max;
     }
 }

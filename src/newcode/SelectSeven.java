@@ -33,7 +33,7 @@ public class SelectSeven {
                 }
                 num = num / 10;
             }
-            if ((num == 7&&! sign)||sign) {
+            if ((num == 7 && !sign) || sign) {
                 count++;
             }
         }

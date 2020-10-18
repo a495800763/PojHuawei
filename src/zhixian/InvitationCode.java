@@ -31,8 +31,7 @@ public class InvitationCode {
     private static boolean isCorrect(String code) throws Exception {
         //得到每一位字符
         char[] chars = code.toCharArray();
-        if(chars.length!=16)
-        {
+        if (chars.length != 16) {
             throw new Exception("输入的验证码不符合规范");
         }
 

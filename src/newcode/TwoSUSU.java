@@ -12,7 +12,7 @@ public class TwoSUSU {
             int num = in.nextInt();
             for (int i = num / 2; i >= 1; i--) {
                 boolean sign = true; // i 是不是一个素数
-                boolean otherSign =true;
+                boolean otherSign = true;
                 for (int j = 2; j <= i / 2; j++) {
                     if (i % j == 0) {
                         sign = false;
@@ -20,14 +20,13 @@ public class TwoSUSU {
                     }
                 }
                 int otherNum = num - i;
-                for(int j = 2; j<= otherNum /2; j++)
-                {
+                for (int j = 2; j <= otherNum / 2; j++) {
                     if (otherNum % j == 0) {
                         otherSign = false;
                         break;
                     }
                 }
-                if (sign&&otherSign) {
+                if (sign && otherSign) {
                     System.out.println(i);
                     System.out.println(otherNum);
                     break;

@@ -14,18 +14,16 @@ public class Test {
     public static void main(String[] args) {
         x--;
         myMethod();
-        System.out.println(x+y++ +x);
+        System.out.println(x + y++ + x);
 
         int a = 0;
         System.out.println(a);
-        System.out.println(1+a++);
+        System.out.println(1 + a++);
         System.out.println(++a);
         System.out.println(a);
 
         int b = 017;
         System.out.println(b);
-
-
 
 
         StringBuffer sb = new StringBuffer("origin");
@@ -34,9 +32,8 @@ public class Test {
 
     }
 
-    public static void addStr (StringBuffer a)
-    {
-       a.append("added");
+    public static void addStr(StringBuffer a) {
+        a.append("added");
 
     }
 }

@@ -25,7 +25,7 @@ public class Rabbit {
                 for (int j = 1; j <= count; j++) {
                     list.add(new Person(i));
                 }
-                count=0;
+                count = 0;
             }
             System.out.println(list.size());
         }
