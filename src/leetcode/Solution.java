@@ -1,28 +1,17 @@
 package leetcode;
 
-import java.util.HashMap;
-import java.util.Map;
-import java.util.TreeMap;
+import javax.xml.soap.Node;
+import java.util.*;
 
 public class Solution {
     public static void main(String[] args) {
-//        int[] a = new int[5];
-//        a[0] = 8;
-//        a[1] = 1;
-//        a[2] = 2;
-//        a[3] = 2;
-//        a[4] = 3;
-//
-//        int[] ints = smallerNumberThanCurrent(a);
-//
-//        for (int anInt : ints) {
-//            System.out.print(anInt);
-//            System.out.print(",");
-//        }
-//
-//        System.out.println('\n');
+        //System.out.println(findContinuousSequence(15));
+        // System.out.println(calculateTime("abcdefghijklmnopqrstuvwxyz", "cba"));
+        ListNode a = new ListNode(-129);
+        ListNode b = new ListNode(-129);
+        a.next = b;
 
-        System.out.println(findContinuousSequence(15));
+        System.out.println(ispalindrome(a));
 
     }
 
@@ -89,5 +78,90 @@ public class Solution {
             i++;
         }
         return result;
+    }
+
+    /**
+     * leetcode 1165：单行键盘
+     *
+     * @param keyBoard
+     * @param word
+     * @return
+     */
+    public static int calculateTime(String keyBoard, String word) {
+        Map<Character, Integer> map = new HashMap<>();
+        char[] keyBoardCharArray = keyBoard.toCharArray();
+
+        for (int i = 0; i < keyBoardCharArray.length; i++) {
+            map.put(keyBoardCharArray[i], i);
+        }
+
+        char[] wordArray = word.toCharArray();
+        int result = 0;
+        for (int i = 0; i < wordArray.length; i++) {
+            if (i == 0) {
+                result = map.get(wordArray[i]);
+            } else {
+                result += Math.abs(map.get(wordArray[i]) - map.get(wordArray[i - 1]));
+            }
+        }
+        return result;
+    }
+
+    /**
+     * leetcode 760： 找出变位映射
+     *
+     * @param A
+     * @param B
+     * @return
+     */
+    public static int[] anagramMapping(int[] A, int[] B) {
+        Map<Integer, List<Integer>> map = new HashMap<>();
+        for (int i = 0; i < B.length; i++) {
+            if (map.containsKey(B[i])) {
+                map.get(B[i]).add(i);
+            } else {
+                List<Integer> list = new ArrayList<>();
+                list.add(i);
+                map.put(B[i], list);
+            }
+        }
+        int[] result = new int[A.length];
+        for (int i = 0; i < A.length; i++) {
+            int currentValue = A[i];
+            int currentIndexInB = map.get(currentValue).get(0);
+            result[i] = currentIndexInB;
+            map.get(currentValue).remove(0);
+        }
+
+        return result;
+    }
+
+    public static boolean ispalindrome(ListNode head) {
+        String a = "";
+        while (head != null) {
+            a += head.val;
+            head = head.next;
+        }
+        boolean result = true;
+        int length = a.length();
+        int i = 0;
+        int j = length - i - 1;
+        while (i < j) {
+            if (a.charAt(i) != a.charAt(j)) {
+                result = false;
+                break;
+            }
+            i++;
+            j--;
+        }
+        return result;
+    }
+    static class ListNode {
+        int val;
+        ListNode next;
+
+        ListNode(int x) {
+            val = x;
+        }
     }
 }
