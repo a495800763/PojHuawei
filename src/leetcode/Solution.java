@@ -4,11 +4,18 @@ import java.util.*;
 
 public class Solution {
     public static void main(String[] args) {
-        ListNode a = new ListNode(-129);
-        ListNode b = new ListNode(-129);
-        a.next = b;
+        int [] arr = new int[8];
+        arr[0]=2;
+        arr[1]=1;
+        arr[2]=2;
+        arr[3]=1;
+        arr[4]=1;
+        arr[5]=2;
+        arr[6]=2;
+        arr[7]=1;
 
-        System.out.println(ispalindrome(a));
+
+        System.out.println(transformArray(arr));
 
     }
 
@@ -201,6 +208,35 @@ public class Solution {
             }
         }
         return depth;
+    }
+
+    /**
+     * leetcode:1243 : 数组变换
+     * @param arr
+     * @return
+     */
+    public static List<Integer> transformArray(int[] arr) {
+        int[] narr=new int[arr.length]; //建立新数组和老数组区分
+        narr[0]=arr[0];
+        narr[arr.length-1]=arr[arr.length-1];//首尾
+        for (int i=1;i<arr.length-1;i++){
+            if ((arr[i]<arr[i+1])&&(arr[i]<arr[i-1])){
+                narr[i]=arr[i]+1;
+            }else if ((arr[i]>arr[i+1])&&(arr[i]>arr[i-1])){
+                narr[i]=arr[i]-1;
+            }else {
+                narr[i]=arr[i];
+            }
+        }//判断
+        if (Arrays.equals(narr,arr)){
+            List<Integer> ans=new ArrayList<>();
+            for (int i=0;i<narr.length;i++){
+                ans.add(narr[i]);
+            }
+            return ans;//新旧相等返回
+        }else {
+            return transformArray(narr);//不相等进行下一天
+        }
     }
 
     static class ListNode {
