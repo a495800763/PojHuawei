@@ -1,12 +1,9 @@
 package leetcode;
 
-import javax.xml.soap.Node;
 import java.util.*;
 
 public class Solution {
     public static void main(String[] args) {
-        //System.out.println(findContinuousSequence(15));
-        // System.out.println(calculateTime("abcdefghijklmnopqrstuvwxyz", "cba"));
         ListNode a = new ListNode(-129);
         ListNode b = new ListNode(-129);
         a.next = b;
@@ -136,6 +133,12 @@ public class Solution {
         return result;
     }
 
+    /**
+     * leetcode ： 回文链表
+     *
+     * @param head
+     * @return
+     */
     public static boolean ispalindrome(ListNode head) {
         String a = "";
         while (head != null) {
@@ -156,6 +159,50 @@ public class Solution {
         }
         return result;
     }
+
+    /**
+     * leetcode ：1290 二进制链表转整数
+     *
+     * @param head
+     * @return
+     */
+    public int getDecimalValue(ListNode head) {
+        int result = 0;
+        while (head != null) {
+            //每次就把之前的结果往前推一位（乘以2），然后加上当前的值（1或者0）
+            result = result * 2 + head.val;
+            head = head.next;
+        }
+        return result;
+    }
+
+
+    /**
+     * leetcode:1614 字符串的最大深度
+     *
+     * @param s
+     * @return
+     */
+    public static int maxDepth(String s) {
+        Stack<Character> stack = new Stack<>();
+        int depth = 0;
+        char[] chars = s.toCharArray();
+        for (char aChar : chars) {
+            if (aChar == '(') {
+                //当前是左括号 入栈
+                stack.push(aChar);
+                int size = stack.size();
+                //入栈后当前剩余左括号(深度)是不是最大深度？
+                depth = depth <= size ? size : depth;
+            }
+            if (aChar == ')') {
+                //遇到右括号，出栈一组，此时栈中元素数量减1 即当前深度减1
+                stack.pop();
+            }
+        }
+        return depth;
+    }
+
     static class ListNode {
         int val;
         ListNode next;
