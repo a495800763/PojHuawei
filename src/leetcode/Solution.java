@@ -1,14 +1,15 @@
 package leetcode;
 
+import com.sun.org.apache.bcel.internal.generic.RETURN;
+
 import java.util.*;
 
 public class Solution {
     public static void main(String[] args) {
-        ListNode a = new ListNode(-129);
-        ListNode b = new ListNode(-129);
-        a.next = b;
-
-        System.out.println(ispalindrome(a));
+        int[] a = new int[2];
+        a[0] = 2;
+        a[1] = 1;
+        System.out.println(validMountainArray(a));
 
     }
 
@@ -201,6 +202,50 @@ public class Solution {
             }
         }
         return depth;
+    }
+
+
+    /**
+     * leetcode:941 有效的山脉数组
+     *
+     * @param A
+     * @return
+     */
+    public static boolean validMountainArray(int[] A) {
+        if (A.length == 2) {
+            //如果数组只有两个元素 肯定不行
+            return false;
+        }
+        //记录是否有上升的过程
+        boolean upStart = false;
+        // 记录是否开始进入下降过程了
+        boolean isfall = false;
+        for (int i = 1; i < A.length; i++) {
+            if (!isfall) {
+                if (A[i - 1] < A[i]) {
+                    upStart = true;
+                    continue;
+                } else if (A[i - 1] == A[i]) {
+                    return false;
+                } else {
+                    isfall = true;
+                    continue;
+                }
+            } else {
+                if (A[i - 1] > A[i]) {
+                    continue;
+                } else {
+                    // 在下降过程中只要出现非下降对 直接返回false
+                    return false;
+                }
+            }
+        }
+        //有上升过程 而且经历了下降过程到结束
+        if (upStart && isfall) {
+            return true;
+        } else {
+            return false;
+        }
     }
 
     static class ListNode {
