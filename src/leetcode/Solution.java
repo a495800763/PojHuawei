@@ -1,15 +1,14 @@
 package leetcode;
 
-import com.sun.org.apache.bcel.internal.generic.RETURN;
-
 import java.util.*;
 
 public class Solution {
     public static void main(String[] args) {
-        int[] a = new int[2];
-        a[0] = 2;
-        a[1] = 1;
-        System.out.println(validMountainArray(a));
+        ListNode a = new ListNode(-129);
+        ListNode b = new ListNode(-129);
+        a.next = b;
+
+        System.out.println(ispalindrome(a));
 
     }
 
@@ -202,6 +201,35 @@ public class Solution {
             }
         }
         return depth;
+    }
+
+    /**
+     * leetcode:1243 : 数组变换
+     * @param arr
+     * @return
+     */
+    public static List<Integer> transformArray(int[] arr) {
+        int[] narr=new int[arr.length]; //建立新数组和老数组区分
+        narr[0]=arr[0];
+        narr[arr.length-1]=arr[arr.length-1];//首尾
+        for (int i=1;i<arr.length-1;i++){
+            if ((arr[i]<arr[i+1])&&(arr[i]<arr[i-1])){
+                narr[i]=arr[i]+1;
+            }else if ((arr[i]>arr[i+1])&&(arr[i]>arr[i-1])){
+                narr[i]=arr[i]-1;
+            }else {
+                narr[i]=arr[i];
+            }
+        }//判断
+        if (Arrays.equals(narr,arr)){
+            List<Integer> ans=new ArrayList<>();
+            for (int i=0;i<narr.length;i++){
+                ans.add(narr[i]);
+            }
+            return ans;//新旧相等返回
+        }else {
+            return transformArray(narr);//不相等进行下一天
+        }
     }
 
 
