@@ -4,11 +4,22 @@ import java.util.*;
 
 public class Solution {
     public static void main(String[] args) {
-        ListNode a = new ListNode(-129);
-        ListNode b = new ListNode(-129);
-        a.next = b;
+        int[][] points = new int[3][];
+        int[] a = new int[2];
+        a[0] = 1;
+        a[1] = 1;
+        points[0] = a;
+        int[] b = new int[2];
+        b[0] = 3;
+        b[1] = 4;
+        points[1] = b;
+        int[] c = new int[2];
+        c[0] = -1;
+        c[1] = 0;
+        points[2] = c;
 
-        System.out.println(ispalindrome(a));
+
+        System.out.println(minTimeToVisitAllPoints(points));
 
     }
 
@@ -205,29 +216,30 @@ public class Solution {
 
     /**
      * leetcode:1243 : 数组变换
+     *
      * @param arr
      * @return
      */
     public static List<Integer> transformArray(int[] arr) {
-        int[] narr=new int[arr.length]; //建立新数组和老数组区分
-        narr[0]=arr[0];
-        narr[arr.length-1]=arr[arr.length-1];//首尾
-        for (int i=1;i<arr.length-1;i++){
-            if ((arr[i]<arr[i+1])&&(arr[i]<arr[i-1])){
-                narr[i]=arr[i]+1;
-            }else if ((arr[i]>arr[i+1])&&(arr[i]>arr[i-1])){
-                narr[i]=arr[i]-1;
-            }else {
-                narr[i]=arr[i];
+        int[] narr = new int[arr.length]; //建立新数组和老数组区分
+        narr[0] = arr[0];
+        narr[arr.length - 1] = arr[arr.length - 1];//首尾
+        for (int i = 1; i < arr.length - 1; i++) {
+            if ((arr[i] < arr[i + 1]) && (arr[i] < arr[i - 1])) {
+                narr[i] = arr[i] + 1;
+            } else if ((arr[i] > arr[i + 1]) && (arr[i] > arr[i - 1])) {
+                narr[i] = arr[i] - 1;
+            } else {
+                narr[i] = arr[i];
             }
         }//判断
-        if (Arrays.equals(narr,arr)){
-            List<Integer> ans=new ArrayList<>();
-            for (int i=0;i<narr.length;i++){
+        if (Arrays.equals(narr, arr)) {
+            List<Integer> ans = new ArrayList<>();
+            for (int i = 0; i < narr.length; i++) {
                 ans.add(narr[i]);
             }
             return ans;//新旧相等返回
-        }else {
+        } else {
             return transformArray(narr);//不相等进行下一天
         }
     }
@@ -274,6 +286,67 @@ public class Solution {
         } else {
             return false;
         }
+    }
+
+
+    /**
+     * 访问所有点的所有点的最小时间
+     *
+     * @param points
+     * @return
+     */
+    public static int minTimeToVisitAllPoints(int[][] points) {
+        int result = 0;
+        for (int i = 0; i < points.length - 1; i++) {
+            int ax = points[i][0];
+            int ay = points[i][1];
+            int bx = points[i + 1][0];
+            int by = points[i + 1][1];
+
+            if (ax == bx) {
+                result += Math.abs(ay - by);
+            } else if (ay == by) {
+                result += Math.abs(ax - bx);
+            } else {
+                //计算初始斜率
+                float k = Math.abs((float) ((float) (ay - by) / (float) (ax - bx)));
+                if (k == 1) {
+                    //初始斜率等于1 直接从对角线过去
+                    result += Math.abs(ax - bx);
+                } else {
+                    int current = 0;
+                    int tempResult;
+                    while (k != 1) {
+                        if (k < 1) {
+                            //斜率<1,从x方向平移至斜率为1
+                            if (ax < bx) {
+                                ax = ax + 1;
+                            } else {
+                                bx = bx + 1;
+                            }
+                            //计算当前斜率
+                            k = Math.abs((float) ((float) (ay - by) / (float) (ax - bx)));
+                            current += 1;
+                        } else {
+                            //斜率>1,从y方向平移至斜率为1
+                            if (ay < by) {
+                                ay = ay + 1;
+                            } else {
+                                by = by + 1;
+                            }
+                            //计算当前斜率
+                            k = Math.abs((float) ((float) (ay - by) / (float) (ax - bx)));
+                            //累计平移的步数
+                            current += 1;
+                        }
+                    }
+                    //这一步的步数=平移步数+对角线步数
+                    tempResult = Math.abs(ax - bx) + current;
+                    result += tempResult;
+                }
+            }
+        }
+        return result;
     }
 
     static class ListNode {
