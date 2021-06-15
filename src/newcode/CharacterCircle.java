@@ -1,9 +1,6 @@
 package newcode;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Scanner;
-import java.util.Stack;
+import java.util.*;
 
 /**
  * 华为机试 字符逆序
@@ -21,7 +18,7 @@ public class CharacterCircle {
         //除去空格的每一个单词
         String[] words = s.split(" ");
         List<Integer> countList = new ArrayList<>();
-        Stack<Character> stack = new Stack<>();
+        ArrayDeque<Character> stack = new ArrayDeque<Character>();
         for (String word : words) {
             char[] chars = word.toCharArray();
             countList.add(chars.length);
