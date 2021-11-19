@@ -68,6 +68,7 @@ public class yuanyin {
             String subStr = current.substring(i, i + 4);
 
             if (!subStr.substring(3, 4).equals("e")) {
+                //如果字符串的3-4位不是e
                 continue;
             }
             boolean firstNotAeiou = !aeiou.contains(subStr.charAt(0));
