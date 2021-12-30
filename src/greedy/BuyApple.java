@@ -31,8 +31,12 @@ public class BuyApple {
                 System.out.println(-1);
             }
         }
+    }
 
-
+    private static  void functio(){
+        int a = 0;
+        a++;
+        System.out.println("hello my name is liumq");
     }
 
     /**
