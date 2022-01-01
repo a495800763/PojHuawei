@@ -1,7 +1,9 @@
 package newcode;
 
-import java.util.*;
-import java.util.spi.CurrencyNameProvider;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Scanner;
+import java.util.Stack;
 
 public class DataFenlei {
     public static void main(String[] args) {
